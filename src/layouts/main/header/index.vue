@@ -1,58 +1,39 @@
 <template>
-  <header
-    class="bg-blue-600 flex items-center justify-between py-4 px-16 relative"
-  >
+  <header class="header">
     <Logo />
-    <nav class="font-semibold text-base text-gray-100 uppercase">
-      <!-- prettier-ignore -->
-      <a 
-        v-for="(link, index) in links" 
-        :href="link.href"
-        :key="index" 
-      >
-        {{ link.name }}
-      </a>
-    </nav>
-    <MenuIcon />
-    <div>
-      <nav
-        class="bg-gray-800 font-semibold text-base text-gray-100 uppercase absolute inset-0 h-screen w-screen"
-      >
-        <!-- prettier-ignore -->
-        <a 
-        v-for="(link, index) in links" 
-        :href="link.href"
-        :key="index" 
-        class="block"
-      >
-        {{ link.name }}
-      </a>
-      </nav>
+    <div class="flex">
+      <Nav class="nav-links" :links="links" />
+
+      <button @click="isOpen = !isOpen" type="button" class="toggle-icon">
+        <MenuIcon  :isOpen="isOpen" />
+      </button>
+
+      <Nav 
+        :class="isOpen ? 'menu-opened' : 'menu-closed'" 
+        class="nav-links--mobile" 
+        :links="links" 
+      />
+
     </div>
   </header>
 </template>
 
-<style>
-nav a {
-  @apply mr-10;
-}
-
-nav a:last-child {
-  margin-right: 0;
-}
-</style>
+<style src="./styles.css" />
 
 <script>
 import Logo from "./logo";
 import MenuIcon from "./menu-icon";
+import Nav from "./nav";
 
 export default {
   components: {
+    Logo,
     MenuIcon,
-    Logo
+    Nav
   },
   data() {
     return {
+      isOpen: false,
       links: [
         { href: "/", name: "Home" },
         { href: "/news", name: "News" },

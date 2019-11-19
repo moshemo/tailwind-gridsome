@@ -1,0 +1,83 @@
+.header {
+  @apply bg-blue-600;
+  @apply flex items-stretch justify-between;
+  @apply h-16;
+  @apply px-8;
+  @apply relative;
+}
+
+.nav-links {
+  @apply hidden;
+  @screen lg {
+    @apply flex;
+  }
+
+  @apply font-normal uppercase;
+  @apply text-base text-gray-100;
+
+  :hover {
+    @apply bg-blue-500;
+  }
+
+  a {
+    @apply inline-flex items-center;
+    @apply py-4 px-6;
+  }
+}
+
+
+.nav-links--mobile {
+  @apply fixed top-0 left-0; 
+  @apply flex h-screen;
+  overflow-x: hidden;
+  transition: 0.5s;
+
+  @apply bg-gray-800;
+
+  @apply font-semibold uppercase;
+  @apply text-base text-gray-100;
+
+  @apply flex-col;
+  @apply items-center justify-center;
+  
+  &.menu-opened { width: 62%; }
+  &.menu-closed { @apply w-0; }
+
+  a {
+    @apply cursor-pointer;
+    @apply mb-2;
+    &:last-child {@apply mb-0;}
+
+    @apply py-2 px-8;
+    @apply rounded-sm;
+
+    &:hover {
+      @apply bg-gray-700;
+    }
+  }
+}
+
+.toggle-icon {
+  @apply cursor-pointer;
+  @apply text-gray-200; 
+    &:hover {
+      @apply text-white;
+    }
+
+    &:focus {
+      @apply text-white; 
+      @apply outline-none;
+    }
+
+    @screen lg {
+      @apply hidden;
+    }
+
+  svg:focus { @apply outline-none; }
+
+  .close-menu { 
+    @apply z-50;
+  }
+}
+
+

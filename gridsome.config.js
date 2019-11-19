@@ -1,13 +1,14 @@
-const autoprefixer = require("autoprefixer");
-const tailwind = require("tailwindcss");
-const purgecss = require("@fullhuman/postcss-purgecss");
+const autoprefixer = require('autoprefixer')
+const tailwind = require('tailwindcss')
+const purgecss = require('@fullhuman/postcss-purgecss')
+const postcssNested = require('postcss-nested')
 
-const postcssPlugins = [tailwind(), autoprefixer()];
+const postcssPlugins = [tailwind(), postcssNested(), autoprefixer()]
 
-if (process.env.NODE_ENV === "production") postcssPlugins.push(purgecss());
+if (process.env.NODE_ENV === 'production') postcssPlugins.push(purgecss())
 
 module.exports = {
-  siteName: "Gridsome",
+  siteName: 'Gridsome',
   plugins: [],
   css: {
     loaderOptions: {
@@ -16,6 +17,6 @@ module.exports = {
       }
     }
   }
-};
+}
 
 // --- NOTE: Changes here require a server restart --- //
